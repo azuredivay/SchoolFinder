@@ -1,0 +1,43 @@
+﻿<ContentDialog
+    x:Class="SchoolFinder.Views.SetupPages.KidsNamesCD"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SchoolFinder.Views.SetupPages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Enter the names of your Kid(s):"
+    Background="{ThemeResource SystemControlAcrylicWindowBrush}"
+    PrimaryButtonText="Continue"
+    SecondaryButtonText="Cancel"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick"
+    DefaultButton="Primary"
+    >
+
+    <StackPanel Orientation="Vertical">
+        <ListView x:Name="KidsList" ItemClick="KidsList_ItemClick">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="x:String">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Text="{x:Bind}"/>
+                        <Button FontFamily="Segoe MDL2 Assets" Foreground="Red" Content="&#xE106;" Background="Transparent" VerticalAlignment="Center" Click="Button_Click_1" Margin="5,0"></Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Margin="0,10" Orientation="Horizontal">
+            <TextBox VerticalAlignment="Center" TextAlignment="Left" x:Name="KidName" MinWidth="300" PlaceholderText="Enter Name Here" />
+            <TextBox VerticalAlignment="Center" x:Name="age" InputScope="Digits" PlaceholderText="Age here"></TextBox>
+            <Button Margin="5,0" VerticalAlignment="Center" Click="Button_Click">
+                <Button.Content>
+                    <TextBlock>
+                    <Run Foreground="Green" FontSize="16" FontFamily="Segoe MDL2 Assets" Text="&#xe109;"></Run>
+                    <Run FontSize="16" Text="  Add"></Run>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+
+    </StackPanel>
+</ContentDialog>
