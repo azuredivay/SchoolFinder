@@ -34,34 +34,8 @@ namespace SchoolFinder.Views
             KidGridM.ItemsSource = KnownKids;
 
             //artifically fill up schools:
+            KnownSchools.AddRange(Services.MockServer.GetSchools());
 
-            KnownSchools.Add(new School
-            {
-                Name = "Little Kids",
-                Address = "718 Rochford St",
-                LatLon = new Geopoint(new BasicGeoposition { Latitude = 41.872669, Longitude = -87.650915 }),
-                Phone = "555-555-555-5",
-                SchoolType = "Elementary School",
-                Website = "https://littlekidsschool.com"
-            });
-            KnownSchools.Add(new School
-            {
-                Name = "Bigger Kids",
-                Address = "728 Rochford St",
-                LatLon = new Geopoint(new BasicGeoposition { Latitude = 41.868404, Longitude = -87.652548 }),
-                Phone = "555-565-666-5",
-                SchoolType = "Middle School",
-                Website = "https://middlekidsschool.com"
-            });
-            KnownSchools.Add(new School
-            {
-                Name = "Better Little Kids",
-                Address = "798 Clinton St",
-                LatLon = new Geopoint(new BasicGeoposition { Latitude = 41.869885, Longitude = -87.6293 }),
-                Phone = "555-595-555-5",
-                SchoolType = "Elementary School",
-                Website = "https://betterlittlekidsschool.com"
-            });
         }
 
         private async void MainMap_Loaded(object sender, RoutedEventArgs e)
@@ -121,6 +95,16 @@ namespace SchoolFinder.Views
             SES.Clear();
             var school = KnownSchools.Find(n => n.Name.Equals(args.MapElements[0].Tag));
             SES.Add(school);
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            mainsplit.IsPaneOpen = true;
+        }
+
+        private void Reset_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

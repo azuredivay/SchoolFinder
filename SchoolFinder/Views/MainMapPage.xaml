@@ -28,17 +28,21 @@
                     <EntranceThemeTransition/>
                 </TransitionCollection>
             </CommandBar.Transitions>
-            <AppBarButton AutomationProperties.AcceleratorKey="Control S" VerticalAlignment="Center" Label="" Icon="Find" x:Uid="search2" >
+            <AppBarButton AutomationProperties.AcceleratorKey="Control S" Click="Search_Click" VerticalAlignment="Center" Label="Search" Icon="Find" x:Uid="search2" >
                 <!--<AppBarButton.Icon>
                             <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE094;" Foreground="LightGreen"></FontIcon>
                         </AppBarButton.Icon>-->
-                <AppBarButton.Flyout>
+                <!--<AppBarButton.Flyout>
                     <Flyout>
                         <TextBlock>search stuff here</TextBlock>
                     </Flyout>
-                </AppBarButton.Flyout>
+                </AppBarButton.Flyout>-->
             </AppBarButton>
-            <AppBarButton Icon="Refresh" VerticalAlignment="Center" Label="Reset"/>
+            <AppBarButton VerticalAlignment="Center" Label="Start Over" Click="Reset_Click">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xF738;" FontFamily="Segoe MDL2 Assets"></FontIcon>
+                </AppBarButton.Icon>
+            </AppBarButton> 
             <AppBarButton Icon="Filter" VerticalAlignment="Center" Label="Filter"></AppBarButton>
             <AppBarSeparator VerticalAlignment="Center" x:Name="AppSep"></AppBarSeparator>
 
@@ -59,86 +63,89 @@
                 </Pivot>
             </CommandBar.Content>
         </CommandBar>
-        <!--<SplitView Grid.Row="2" DisplayMode="Inline" IsPaneOpen="True" CompactPaneLength="320" x:Name="mainsplit" PaneBackground="{ThemeResource SystemControlAcrylicWindowBrush}">
+        <SplitView Grid.Row="2" PanePlacement="Right" DisplayMode="Overlay" IsPaneOpen="False" CompactPaneLength="320" x:Name="mainsplit" PaneBackground="{ThemeResource SystemControlAcrylicElementBrush}">
+            <Grid>
+                <Maps:MapControl Grid.Column="0" ZoomInteractionMode="GestureAndControl" TiltInteractionMode="GestureAndControl" Grid.Row="2" MapElementClick="MainMap_MapElementClick" x:Name="mainMap"/>
 
-            <SplitView.Pane>
-                <StackPanel Background="Transparent"></StackPanel>
-            </SplitView.Pane>
-        </SplitView>-->
-        <Maps:MapControl Grid.Column="0" ZoomInteractionMode="GestureAndControl" TiltInteractionMode="GestureAndControl" Grid.Row="2" MapElementClick="MainMap_MapElementClick" x:Name="mainMap"/>
-
-        <RelativePanel Background="{ThemeResource SystemControlBaseMediumLowAcrylicElementMediumBrush}" Width="320" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="2">
-            <ItemsControl RelativePanel.AlignTopWithPanel="True" Margin="10" Background="Transparent" x:Name="KidGridM">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate x:DataType="data:Kid">
-                        <RelativePanel MinWidth="280" Margin="0,15" Background="Transparent">
-                            <TextBlock FontSize="18" VerticalAlignment="Center" RelativePanel.AlignLeftWithPanel="True" x:Name="t01">
+                <RelativePanel Background="{ThemeResource SystemControlBaseMediumLowAcrylicElementMediumBrush}" Width="320" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="2">
+                    <ItemsControl RelativePanel.AlignTopWithPanel="True" Margin="10" Background="Transparent" x:Name="KidGridM">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="data:Kid">
+                                <RelativePanel MinWidth="280" Margin="0,15" Background="Transparent">
+                                    <TextBlock FontSize="18" VerticalAlignment="Center" RelativePanel.AlignLeftWithPanel="True" x:Name="t01">
                                 <Run FontFamily="Segoe MDL2 Assets" Text="&#xE2AF;"/>
                                 <Run Text=" "/>
                                 <Run FontWeight="Bold" Foreground="IndianRed" Text="{Binding Name}"/>
-                            </TextBlock>
-                            <TextBox RelativePanel.LeftOf="closebutton" Margin="5,0" x:Name="money" BorderBrush="Transparent" VerticalAlignment="Center" InputScope="CurrencyAmount" PlaceholderText="₹0"/>
-                            <TextBlock RelativePanel.Below="t01" Margin="15,5">
+                                    </TextBlock>
+                                    <TextBox RelativePanel.LeftOf="closebutton" Margin="5,0" x:Name="money" BorderBrush="Transparent" VerticalAlignment="Center" InputScope="CurrencyAmount" PlaceholderText="₹0"/>
+                                    <TextBlock RelativePanel.Below="t01" Margin="15,5">
                                 <Run FontFamily="Segoe MDL2 Assets" Text="&#xE7BE;"/>
                                 <Run Text=" "/>
                                 <Run Text="{Binding SchoolType}"></Run>
-                            </TextBlock>
-                            <Button Content="&#xEDAE;" x:Name="closebutton" RelativePanel.AlignRightWithPanel="True" Background="Transparent" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Center" Margin="0,5" Foreground="Red"></Button>
-                        </RelativePanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                                    </TextBlock>
+                                    <Button Content="&#xEDAE;" x:Name="closebutton" RelativePanel.AlignRightWithPanel="True" Background="Transparent" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Center" Margin="0,5" Foreground="Red"></Button>
+                                </RelativePanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
 
-            <StackPanel Margin="5,10,5,5" RelativePanel.Above="Schools">
-                <TextBlock Margin="5" x:Name="website">
+                    <StackPanel Margin="5,10,5,5" RelativePanel.Above="Schools">
+                        <TextBlock Margin="5" x:Name="website">
                                 <Run FontSize="15" FontFamily="Segoe MDL2 Assets" Text="&#xE783;"/>
                                 <Run Text=" "/>
                                 <Run FontSize="16" Text="School Information:" />
-                </TextBlock>
-            </StackPanel>
-            <ItemsControl Margin="5,0,5,5" x:Name="Schools" RelativePanel.AlignBottomWithPanel="True">
-                
-                <ItemsControl.ItemContainerTransitions>
-                    <TransitionCollection>
-                        <AddDeleteThemeTransition/>
-                        <ReorderThemeTransition/>
-                        <EntranceThemeTransition/>
-                        <ContentThemeTransition/>
-                    </TransitionCollection>
-                </ItemsControl.ItemContainerTransitions>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate x:DataType="data:School">
-                        <RelativePanel Margin="5,10">
-                            <TextBlock IsTextSelectionEnabled="True" Margin="5" x:Name="name">
+                        </TextBlock>
+                    </StackPanel>
+                    <ItemsControl Margin="5,0,5,5" x:Name="Schools" RelativePanel.AlignBottomWithPanel="True">
+
+                        <ItemsControl.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <AddDeleteThemeTransition/>
+                                <ReorderThemeTransition/>
+                                <EntranceThemeTransition/>
+                                <ContentThemeTransition/>
+                            </TransitionCollection>
+                        </ItemsControl.ItemContainerTransitions>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="data:School">
+                                <RelativePanel Margin="5,10">
+                                    <TextBlock IsTextSelectionEnabled="True" Margin="5" x:Name="name">
                                 <Run FontSize="14" Foreground="{ThemeResource SystemAccentColor}" FontFamily="Segoe MDL2 Assets" Text="&#xE825;"/>
                                 <Run Text=" "/>
                                 <Run FontSize="15" Text="{Binding Name}" />
-                            </TextBlock>
-                            <TextBlock Margin="5" RelativePanel.Below="name" x:Name="Type">
+                                    </TextBlock>
+                                    <RatingControl Margin="5" Foreground="Yellow" x:Name="rating" RelativePanel.Below="name" AutomationProperties.Name="RatingControl with placeholder" PlaceholderValue="{Binding Rating}"></RatingControl>
+                                    <TextBlock Margin="5" RelativePanel.Below="rating" x:Name="Type">
                                 <Run FontSize="14" Foreground="{ThemeResource SystemAccentColor}" FontFamily="Segoe MDL2 Assets" Text="&#xE902;"/>
                                 <Run Text=" "/>
                                 <Run FontSize="15" Text="{Binding SchoolType}" />
-                            </TextBlock>
-                            <TextBlock IsTextSelectionEnabled="True" Margin="5" RelativePanel.Below="Type" x:Name="phone">
+                                    </TextBlock>
+                                    <TextBlock IsTextSelectionEnabled="True" Margin="5" RelativePanel.Below="Type" x:Name="phone">
                                 <Run FontSize="14" Foreground="{ThemeResource SystemAccentColor}" FontFamily="Segoe MDL2 Assets" Text="&#xE80B;"/>
                                 <Run Text=" "/>
                                 <Run FontSize="15" Text="{Binding Phone}" />
-                            </TextBlock>
-                            <TextBlock IsTextSelectionEnabled="True" Margin="5" RelativePanel.Below="phone" x:Name="website">
+                                    </TextBlock>
+                                    <TextBlock IsTextSelectionEnabled="True" Margin="5" RelativePanel.Below="phone" x:Name="website">
                                 <Run FontSize="14" Foreground="{ThemeResource SystemAccentColor}" FontFamily="Segoe MDL2 Assets" Text="&#xEB41;"/>
                                 <Run Text=" "/>
                                 <Run FontSize="15" Text="{Binding Website}" />
-                            </TextBlock>
-                            <TextBlock IsTextSelectionEnabled="True" Margin="5" RelativePanel.Below="website" x:Name="latlon">
+                                    </TextBlock>
+                                    <TextBlock IsTextSelectionEnabled="True" Margin="5" RelativePanel.Below="website" x:Name="latlon">
                                 <Run FontSize="14" Foreground="{ThemeResource SystemAccentColor}" FontFamily="Segoe MDL2 Assets" Text="&#xE816;"/>
                                 <Run Text=" "/>
                                 <Run FontSize="15" Text="{Binding Address}" />
-                            </TextBlock>
-                        </RelativePanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </RelativePanel>
+                                    </TextBlock>
+                                </RelativePanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </RelativePanel>
+            </Grid>
+            <SplitView.Pane>
+                <StackPanel Background="Transparent"></StackPanel>
+            </SplitView.Pane>
+        </SplitView>
+        
 
     </Grid>
 </Page>
