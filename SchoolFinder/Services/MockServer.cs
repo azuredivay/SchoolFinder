@@ -46,5 +46,13 @@ namespace SchoolFinder.Services
                 }
             };
         }
+
+        public static List<string> GetSchoolNames()
+        {
+            return new List<string>
+            {
+                "Little Kids", "Bigger Kids", "Better Little Kids"
+            };
+        }
     }
 }

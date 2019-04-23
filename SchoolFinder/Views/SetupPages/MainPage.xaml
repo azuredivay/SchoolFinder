@@ -21,10 +21,10 @@
         </Image>
         <RelativePanel x:Name="LoginPanel" Grid.Row="0">
             <TextBlock x:Name="WelcomeText" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Style="{StaticResource HeaderTextBlockStyle}" Text="Welcome to School Finder." FontSize="35" Foreground="White"></TextBlock>
-            <Button x:Name="start" Click="{x:Bind GoToMain}" RelativePanel.Below="WelcomeText" RelativePanel.AlignHorizontalCenterWith="WelcomeText" Margin="10" Padding="15,0" FontFamily="Segoe UI" Foreground="White" FontSize="20" Content="Start"></Button>
+            <Button x:Name="start" Click="{x:Bind GoToMain}" RelativePanel.Below="WelcomeText" RelativePanel.AlignHorizontalCenterWith="WelcomeText" Margin="10" Padding="15,0" FontFamily="Segoe UI" Foreground="White" FontSize="20" Content="Accept &amp; Continue"></Button>
             <ProgressBar Visibility="Collapsed" RelativePanel.Below="start" Margin="15" x:Name="PBL" IsIndeterminate="True"/>
 
-            <TextBlock Foreground="White" RelativePanel.AlignHorizontalCenterWith="start" Margin="10" RelativePanel.Below="start" Text="Thank you for choosing School Finder, where you can find the best schools for your kids!"/>
+            <TextBlock ToolTipService.ToolTip="Terms And Conditions" Foreground="White" RelativePanel.AlignHorizontalCenterWith="start" Margin="10" RelativePanel.Below="start" FontWeight="Light" Text="By using this application you accept that you won't use the data provided by it in any way illegal and/or racial discrimination."/>
         </RelativePanel>
     </Grid>
 </Page>

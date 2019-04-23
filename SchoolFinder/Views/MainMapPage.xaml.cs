@@ -106,5 +106,15 @@ namespace SchoolFinder.Views
         {
 
         }
+
+        private void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+
+        }
+
+        private void SearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            sender.ItemsSource = Services.MockServer.GetSchoolNames().Where(x => x.ToLower().Contains(sender.Text.ToLower())).ToList();
+        }
     }
 }
