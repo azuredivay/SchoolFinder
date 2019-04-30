@@ -178,6 +178,41 @@
                     </StackPanel>
                     <Line Stroke="#232323" StrokeThickness="1" X1="5" Y1="0" X2="315" Y2="0"/>
                     <AutoSuggestBox Margin="5,10" QuerySubmitted="AutoSuggestBox_QuerySubmitted" x:Name="SearchBox" TextChanged="SearchBox_TextChanged" QueryIcon="Find" Description="Begin by typing School names..." PlaceholderText="School Name here"></AutoSuggestBox>
+                    <ItemsControl x:Name="SearchItems">
+                        <ItemsControl.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <AddDeleteThemeTransition/>
+                                <ReorderThemeTransition/>
+                                <EntranceThemeTransition/>
+                                <ContentThemeTransition/>
+                            </TransitionCollection>
+                        </ItemsControl.ItemContainerTransitions>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="data:School">
+                                <StackPanel Orientation="Vertical" Margin="5">
+                                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" Margin="3" Text="{x:Bind Name}"/>
+                                    <RatingControl HorizontalAlignment="Left" Margin="3" Foreground="Yellow" x:Name="rating" AutomationProperties.Name="RatingControl with placeholder" PlaceholderValue="{Binding Rating}"></RatingControl>
+                                    <StackPanel Margin="3" Orientation="Horizontal">
+                                        <TextBlock Margin="0,0,10,0" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Text="&#xF182;"/>
+                                        <TextBlock Text="8AM - 4:40PM" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Margin="3" Orientation="Horizontal">
+                                        <TextBlock Foreground="CadetBlue" Margin="0,0,10,0" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Text="&#xEA18;"/>
+                                        <TextBlock Text="Police in vicinity" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Margin="3" Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Margin="0,0,10,0" FontFamily="Segoe MDL2 Assets" Text="&#xE8C7;"/>
+                                        <TextBlock Text="100USD/month" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Margin="3" Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Margin="0,0,10,0" FontFamily="Segoe MDL2 Assets" Text="&#xE80B;"/>
+                                        <TextBlock Text="{x:Bind Phone}" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                
                 </StackPanel>
             </SplitView.Pane>
         </SplitView>

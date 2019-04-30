@@ -59,7 +59,7 @@ namespace SchoolFinder.Views
             
         }
 
-        public void SetMapElements()
+        public async void SetMapElements()
         {
             var MyLandmarks = new List<MapElement>();
 
@@ -87,6 +87,8 @@ namespace SchoolFinder.Views
             mainMap.Center = KnownSchools[0].LatLon;
             mainMap.ZoomLevel = 14;
             mainMap.TrafficFlowVisible = true;
+            await mainMap.TryTiltAsync(40);
+            await mainMap.TryZoomToAsync(17);
             Schools.ItemsSource = SES;
         }
 
@@ -109,12 +111,12 @@ namespace SchoolFinder.Views
 
         private void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
-
+            SearchItems.ItemsSource = Services.MockServer.GetSchools().Where(x => x.Name.ToLower().Contains(sender.Text.ToLower())).ToList();
         }
 
         private void SearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
-            sender.ItemsSource = Services.MockServer.GetSchoolNames().Where(x => x.ToLower().Contains(sender.Text.ToLower())).ToList();
+            SearchItems.ItemsSource = Services.MockServer.GetSchools().Where(x => x.Name.ToLower().Contains(sender.Text.ToLower())).ToList();
         }
     }
 }
